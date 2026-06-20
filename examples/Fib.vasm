@@ -1,0 +1,27 @@
+; Print the first ten Fibonacci numbers, one per line.
+
+    ldi r1, 0           ; a
+    ldi r2, 1           ; b
+    ldi r3, 0           ; index
+    ldi r4, 10          ; how many to print
+
+Loop:
+    cmp r3, r4
+    jge Done
+
+    mov r0, r1
+    sys 2               ; PutInt a
+    ldi r0, '\n'
+    sys 1               ; PutChar newline
+
+    mov r5, r1
+    add r5, r2          ; next = a + b
+    mov r1, r2          ; a = b
+    mov r2, r5          ; b = next
+
+    inc r3
+    jmp Loop
+
+Done:
+    ldi r0, 0
+    sys 0

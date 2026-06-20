@@ -1,0 +1,27 @@
+; Print the squares of 1..5 using a CALL / RET subroutine.
+
+    ldi r1, 1
+    ldi r2, 5
+
+Loop:
+    cmp r1, r2
+    jg Done
+
+    mov r0, r1
+    call Square         ; r0 = r0 * r0
+    sys 2               ; PutInt
+    ldi r0, ' '
+    sys 1
+
+    inc r1
+    jmp Loop
+
+Done:
+    ldi r0, '\n'
+    sys 1
+    ldi r0, 0
+    sys 0
+
+Square:
+    mul r0, r0
+    ret
