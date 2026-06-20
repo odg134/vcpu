@@ -5,7 +5,7 @@
     ldi r1, 5
 
 Loop:
-    cmp r1, 0
+    cmpi r1, 0
     jle Done
 
     mov r0, r1
